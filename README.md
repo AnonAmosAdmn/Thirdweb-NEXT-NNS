@@ -15,8 +15,10 @@ Install the template using [thirdweb create](https://portal.thirdweb.com/cli/cre
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file:
-
-`CLIENT_ID`
+ 
+NEXT_PUBLIC_NFT_CONTRACT_ADDRESS=0x94475C04c5413c9FE532675fB921fC8b9a24475b
+NEXT_PUBLIC_ERC20_CONTRACT_ADDRESS=0xF58E363B23fC1BA88f8F75A6EAB57cF6ecaFae05
+NEXT_PUBLIC_TEMPLATE_CLIENT_ID=
 
 To learn how to create a client ID, refer to the [client documentation](https://portal.thirdweb.com/typescript/v5/client).
 
