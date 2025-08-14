@@ -58,6 +58,7 @@ export default function Home() {
           setResolvedAddress(resolved);
 
           const avatar = await nns.getAvatarUrl(name);
+          console.log("Resolved Avatar URL:", avatar);
           setAvatarUrl(avatar);
         }
 
@@ -127,16 +128,17 @@ export default function Home() {
             {avatarUrl ? (
               <div className="relative w-28 h-28 rounded-full overflow-hidden ring-4 ring-blue-500 shadow-lg">
                 <Image
-                  src={
+                  src={`/api/avatar-proxy?url=${encodeURIComponent(
                     avatarUrl.startsWith("ipfs://")
                       ? `https://ipfs.io/ipfs/${avatarUrl.split("ipfs://")[1]}`
                       : avatarUrl
-                  }
+                  )}`}
                   alt="Avatar"
                   width={112}
                   height={112}
                   className="rounded-full object-cover"
                 />
+
               </div>
             ) : (
               <div className="w-28 h-28 rounded-full bg-gray-700 flex items-center justify-center text-gray-500 border border-gray-600">
