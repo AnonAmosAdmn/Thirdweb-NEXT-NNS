@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import { client } from "./client";
 import { NNS } from "@nadnameservice/nns-ethers-sdk";
 import { ethers } from "ethers";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const account = useActiveAccount();
@@ -24,18 +25,24 @@ export default function Home() {
 
   // Replace with your ERC721 contract address
   const erc721Address = process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as string;
-  const erc721Abi = [
-    "function balanceOf(address owner) view returns (uint256)",
-    "function name() view returns (string)",
-  ];
+  const erc721Abi = useMemo(
+    () => [
+      "function balanceOf(address owner) view returns (uint256)",
+      "function name() view returns (string)",
+    ],
+    []
+  );
 
   // Replace with your ERC20 contract address
   const erc20Address = process.env.NEXT_PUBLIC_ERC20_CONTRACT_ADDRESS as string;
-  const erc20Abi = [
-    "function balanceOf(address owner) view returns (uint256)",
-    "function name() view returns (string)",
-    "function decimals() view returns (uint8)"
-  ];
+  const erc20Abi = useMemo(
+    () => [
+      "function balanceOf(address owner) view returns (uint256)",
+      "function name() view returns (string)",
+      "function decimals() view returns (uint8)"
+    ],
+    []
+  );
 
   useEffect(() => {
     if (!account) return;
@@ -87,7 +94,7 @@ export default function Home() {
         setOwnsNFT(false);
       }
     })();
-  }, [account]);
+  }, [account, erc20Abi, erc20Address, erc721Abi, erc721Address]);
 
   const shortenAddress = (addr: string) =>
     addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : "";
@@ -199,6 +206,16 @@ export default function Home() {
             
           </div>
         )}
+        <div className="mt-8 text-center">
+          <Link 
+            href="https://app.nad.domains/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 underline transition-colors"
+          >
+            Visit Nad Name Service
+          </Link>
+        </div>
       </main>
     </div>
   );
