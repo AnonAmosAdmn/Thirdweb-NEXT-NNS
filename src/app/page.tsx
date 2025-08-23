@@ -206,7 +206,15 @@ export default function Home() {
             
           </div>
         )}
-        <div className="mt-8 text-center">
+        <div className="flex flex-col mt-8 text-center">
+          <Link 
+            href="https://thirdweb.com/monad-testnet/0x94475C04c5413c9FE532675fB921fC8b9a24475b" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 underline transition-colors"
+          >
+            Mint NFT on Thirdweb
+          </Link>
           <Link 
             href="https://app.nad.domains/" 
             target="_blank" 
